@@ -2,20 +2,25 @@ const Koa = require('koa')
 
 const app = new Koa()
 
-function test() {
-  console.log('hello,7yue')
-}
-
 //注册
-app.use((ctx,next)=>{
-  //ctx 上下文
-  console.log('有个傻子发请求过来了！')
-  next()
-})
+// app.use(async (ctx,next)=>{
+//   //ctx 上下文
+//   const a=await next()
+//   console.log(a)
+//   // a.then((res)=>{
+//   //   console.log(res)
+//   // })
+// })
+app.use(async (ctx,next)=>{
 
-app.use((ctx,next)=>{
-  console.log('有个猪八戒发请求过来了！')
-  next()
+  const axios =require('axios')
+  const start = Date.now()
+  const res =await axios.get('http://bl.talelin.com/v1/classic/latest?appkey=AbhC31IG7ruCDp57')
+  const end= Date.now()
+  console.log(end-start)
+  console.log(res)
+
+  // return 'hello,kai'
 })
 
 app.listen(3000)
