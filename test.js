@@ -1,29 +1,31 @@
-function fun1() {
+async function fun1() {
   try {
-    fun2()
+    await fun2()
   }catch (error) {
     throw error
   }
 
 }
-function fun2() {
+async function fun2() {
   try {
-    fun3()
+    await fun3()
   }catch (error) {
-    throw error
+    console.log(error)
   }
 }
 
 function fun3() {
-  try{
-    1/a
-  }catch (error){
-    throw error
-  }
-  return 'success'
+   return new Promise((resolve,reject)=>{
+     setTimeout(function (){
+       const r = Math.random()
+       if(r< 0.5){
+         reject('err')
+       }
+     })
+   })
 }
 
-console.log(fun3())
+fun1()
 
 //没有异常；没有异常，不需要返回结果
 // 发生了异常
