@@ -6,10 +6,19 @@ router.post('/v1/:id/classic/latest',(ctx,next)=>{
   const query = ctx.request.query  //问号后面的查询参数
   const headers = ctx.request.header
   const body = ctx.request.body
+
+  if (true){
+    const error =new Error('为什么报错！')
+    error.errorCode = 10001
+    error.status= 400
+    error.requestUrl =`${ctx.method}  ${ctx.path}`
+    throw error
+  }
+
   ctx.body = {
     key:'classic'
   }
-  throw new Error('API Exception')
+
 })
 
 module.exports = router
