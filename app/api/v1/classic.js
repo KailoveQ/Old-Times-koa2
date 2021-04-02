@@ -1,5 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
+const {HttpException} = require('../../../core/http-exception')
 
 router.post('/v1/:id/classic/latest',(ctx,next)=>{
   const path = ctx.params
@@ -8,10 +9,7 @@ router.post('/v1/:id/classic/latest',(ctx,next)=>{
   const body = ctx.request.body
 
   if (true){
-    const error =new Error('为什么报错！')
-    error.errorCode = 10001
-    error.status= 400
-    error.requestUrl =`${ctx.method}  ${ctx.path}`
+    const error = new HttpException('为什么错误',10009,200)
     throw error
   }
 
