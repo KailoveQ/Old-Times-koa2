@@ -3,11 +3,15 @@ const  catchError = async ( ctx,next)=>{
   try {
     await next()
   } catch (error){
-    if(global.config.environment === 'dev'){
+
+    //开发环境 不是HTTPException
+    const isHttpException = error instanceof HttpException
+    const isDev =global.config.environment === 'dev'
+    if(isDev && !isHttpException){
       throw error
     }
 
-    if(error instanceof HttpException){
+    if(isHttpException){
       ctx.body ={
         msg:error.msg,
         error_code:error.errorCode,

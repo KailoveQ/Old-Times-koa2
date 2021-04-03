@@ -1,14 +1,15 @@
-const {db} = require('../../core/db')
+const {sequelize} = require('../../core/db')
 
 const {Sequelize,Model} = require('sequelize')
 
-class user extends Model{
+class User extends Model{
 
 }
 
+
 User.init({
   id:{
-    type:Sequelize.INTEGER,
+    type:Sequelize.INTEGER ,
     primaryKey:true,
     autoIncrement:true
   },
@@ -18,5 +19,11 @@ User.init({
   openid:{
     type:Sequelize.STRING(64),
     unique:true
-  }
+  },
+
+},{
+  sequelize,
+  tableName:'user'
 })
+
+//  数据迁移 SQL 更新风险
