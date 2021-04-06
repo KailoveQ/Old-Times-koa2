@@ -17,8 +17,8 @@ router.post('/', async (ctx) => {
         case LoginType.USER_EMAIL:
             token = await emailLogin(v.get('body.account'),
                 v.get('body.secret'))
-            await emailLogin(v.get('body.account'),
-                 v.get('body.secret'))
+            // await emailLogin(v.get('body.account'),
+            //      v.get('body.secret'))
             break
         case LoginType.USER_MINI_PROGRAM:
             // token = await WXManager.codeToToken(v.get('body.account'))
@@ -34,7 +34,7 @@ router.post('/', async (ctx) => {
 })
 
 // router.post('/verify', async (ctx)=>{
-//     // token
+//      // token
 //     const v =await new NotEmptyValidator().validate(ctx)
 //     const result = Auth.verifyToken(v.get('body.token'))
 //     ctx.body = {
