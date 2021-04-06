@@ -13,6 +13,7 @@ router.post('/register',async(ctx,next)=>{
   // 接收参数 校验
   const v = await new RegisterValidator().validate(ctx)
   // v.get 获取用户的数据
+
   const user ={
     email: v.get('body.email'),
     password: v.get('body.password2'),

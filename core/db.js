@@ -28,7 +28,7 @@ const sequelize = new Sequelize(dbName,user,password,{
 })
 
 sequelize.sync({
-  force:true // 这里慎重啊！！！ 不要 true
+  force:false // 这里慎重啊！！！ 不要 true
   })
 
 module.exports={
