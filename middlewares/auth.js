@@ -11,16 +11,15 @@ class Auth {
 
     get m() {
         return async (ctx, next) => {
-
+            
             const userToken = basicAuth(ctx.req)
-
             let errMsg = 'token不合法'
 
             if (!userToken || !userToken.name) {
                 throw new global.errs.Forbbiden(errMsg)
             }
             try {
-                var decode = jwt.verify(userToken.name,
+                var decode = jwt.verify(userToken.name, 
                     global.config.security.secretKey)
             } catch (error) {
                 if (error.name == 'TokenExpiredError'){
@@ -43,10 +42,10 @@ class Auth {
             await next()
         }
     }
-    //判断令牌是否过期
+
     static verifyToken(token){
         try{
-            jwt.verify(token,
+            jwt.verify(token, 
                 global.config.security.secretKey)
             return true
         }

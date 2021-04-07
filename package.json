@@ -1,7 +1,7 @@
 {
-  "name": "old-island-koa2",
+  "name": "island",
   "version": "1.0.0",
-  "description": "",
+  "description": "7七月的微信公众号：林间有风",
   "main": "app.js",
   "dependencies": {
     "axios": "^0.21.1",

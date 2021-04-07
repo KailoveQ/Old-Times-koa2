@@ -1,14 +1,23 @@
 const Router = require('koa-router')
-const {TokenValidator, NotEmptyValidator} = require('../../validators/validator')
-const {LoginType} = require('../../lib/enum')
-const { User} = require('../../models/user')
-//
+const {
+    TokenValidator,
+    NotEmptyValidator
+} = require('../../validators/validator')
+const {
+    LoginType
+} = require('../../lib/enum')
+const {
+    User
+} = require('../../models/user')
+
 const { WXManager } = require('../../services/wx')
-//
+
 const { generateToken } = require('../../../core/util')
 const {Auth} = require('../../../middlewares/auth')
 
-const router = new Router({ prefix: '/v1/token'})
+const router = new Router({
+    prefix: '/v1/token'
+})
 
 router.post('/', async (ctx) => {
     const v = await new TokenValidator().validate(ctx)
@@ -17,8 +26,6 @@ router.post('/', async (ctx) => {
         case LoginType.USER_EMAIL:
             token = await emailLogin(v.get('body.account'),
                 v.get('body.secret'))
-            // await emailLogin(v.get('body.account'),
-            //      v.get('body.secret'))
             break
         case LoginType.USER_MINI_PROGRAM:
             token = await WXManager.codeToToken(v.get('body.account'))
@@ -34,7 +41,7 @@ router.post('/', async (ctx) => {
 })
 
 router.post('/verify', async (ctx)=>{
-     // token
+    // token
     const v =await new NotEmptyValidator().validate(ctx)
     const result = Auth.verifyToken(v.get('body.token'))
     ctx.body = {

@@ -29,7 +29,7 @@ class Art {
         }
 
         const like = await Favor.userLikeIt(
-          this.art_id, this.type, uid)
+            this.art_id, this.type, uid)
         // art.setDataValue('like_status',like)
         return {
             art,
