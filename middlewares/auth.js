@@ -43,18 +43,18 @@ class Auth {
             await next()
         }
     }
+    //判断令牌是否过期
+    static verifyToken(token){
+        try{
+            jwt.verify(token,
+                global.config.security.secretKey)
+            return true
+        }
+        catch (error){
+            return false
+        }
 
-    // static verifyToken(token){
-    //     try{
-    //         jwt.verify(token,
-    //             global.config.security.secretKey)
-    //         return true
-    //     }
-    //     catch (error){
-    //         return false
-    //     }
-    //
-    // }
+    }
 }
 
 module.exports = {
